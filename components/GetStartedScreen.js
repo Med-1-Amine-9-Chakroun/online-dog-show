@@ -1,12 +1,13 @@
 import React from "react";
-import { Image, View, StyleSheet, Text } from "react-native";
+import { Image, View, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 import AppLoading from "expo-app-loading";
 import useCustomFonts from "../assets/useCustomFonts";
+import { useNavigation } from "@react-navigation/native";
 
 export default function GetStartedScreen() {
   const fontsLoaded = useCustomFonts();
-
+  const navigation = useNavigation();
   if (!fontsLoaded) {
     return null; // Don't render anything until fonts are loaded
   }
@@ -14,6 +15,10 @@ export default function GetStartedScreen() {
   if (!fontsLoaded) {
     return <AppLoading />;
   }
+
+  const handlePress = () => {
+    navigation.navigate("DogsList");
+  };
 
   return (
     <View style={styles.container}>
@@ -24,9 +29,9 @@ export default function GetStartedScreen() {
         />
         <Text style={styles.desc}>Explore the wonderful world of dogs!</Text>
       </View>
-      <View style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={() => handlePress()}>
         <Text style={styles.buttonText}>Explore Now</Text>
-      </View>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -58,10 +63,10 @@ const styles = StyleSheet.create({
     fontFamily: "PlaywriteDEGrund-ExtraLight",
   },
   button: {
-    padding: 20,
     backgroundColor: "#cfb0d4",
     borderRadius: 50,
-    paddingVertical: 15,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
     alignItems: "center",
     justifyContent: "center",
     alignSelf: "center",
