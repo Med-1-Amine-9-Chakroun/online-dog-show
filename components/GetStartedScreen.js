@@ -8,9 +8,6 @@ import { useNavigation } from "@react-navigation/native";
 export default function GetStartedScreen() {
   const fontsLoaded = useCustomFonts();
   const navigation = useNavigation();
-  if (!fontsLoaded) {
-    return null; // Don't render anything until fonts are loaded
-  }
 
   if (!fontsLoaded) {
     return <AppLoading />;
@@ -28,6 +25,9 @@ export default function GetStartedScreen() {
           style={styles.image}
         />
         <Text style={styles.desc}>Explore the wonderful world of dogs!</Text>
+        <Text style={{ fontFamily: "System", fontSize: 20 }}>
+          Test System Font
+        </Text>
       </View>
       <TouchableOpacity style={styles.button} onPress={() => handlePress()}>
         <Text style={styles.buttonText}>Explore Now</Text>
@@ -65,9 +65,11 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: "#cfb0d4",
     borderRadius: 50,
-    paddingVertical: 10,
-    paddingHorizontal: 15,
+    paddingVertical: 15,
+
     alignItems: "center",
+    fontSize: 20,
+    width: 200,
     justifyContent: "center",
     alignSelf: "center",
     marginBottom: 50,
