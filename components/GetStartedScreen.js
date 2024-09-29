@@ -1,12 +1,15 @@
 import React from "react";
 import { Image, View, StyleSheet, Text } from "react-native";
-import { useFonts } from "expo-font";
+
 import AppLoading from "expo-app-loading";
+import useCustomFonts from "../assets/useCustomFonts";
 
 export default function GetStartedScreen() {
-  let [fontsLoaded] = useFonts({
-    "PlaywriteDEGrund-ExtraLight": require("../assets/fonts/PlaywriteDEGrund-ExtraLight.ttf"),
-  });
+  const fontsLoaded = useCustomFonts();
+
+  if (!fontsLoaded) {
+    return null; // Don't render anything until fonts are loaded
+  }
 
   if (!fontsLoaded) {
     return <AppLoading />;
