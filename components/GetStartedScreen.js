@@ -2,7 +2,7 @@ import React from "react";
 import { Image, View, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 import AppLoading from "expo-app-loading";
-import useCustomFonts from "../assets/useCustomFonts";
+import useCustomFonts from "../hooks/useCustomFonts";
 import { useNavigation } from "@react-navigation/native";
 
 export default function GetStartedScreen() {
@@ -25,9 +25,6 @@ export default function GetStartedScreen() {
           style={styles.image}
         />
         <Text style={styles.desc}>Explore the wonderful world of dogs!</Text>
-        <Text style={{ fontFamily: "System", fontSize: 20 }}>
-          Test System Font
-        </Text>
       </View>
       <TouchableOpacity style={styles.button} onPress={() => handlePress()}>
         <Text style={styles.buttonText}>Explore Now</Text>
