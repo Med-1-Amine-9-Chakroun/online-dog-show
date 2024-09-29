@@ -11,7 +11,7 @@ export default function DogsList() {
   const navigation = useNavigation();
 
   const handlePress = () => {
-    navigation.navigate("GetStartedScreen");
+    navigation.navigate("DogDetails");
   };
   if (!fontsLoaded) {
     return <AppLoading />;
@@ -42,7 +42,11 @@ export default function DogsList() {
   }, []);
   return (
     <View style={styles.container}>
+      <View style={styles.nav}>
+        <Text style={styles.navText}>Dogs List</Text>
+      </View>
       <FlatList
+        style={styles.flatList}
         data={listDogs}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
@@ -52,8 +56,8 @@ export default function DogsList() {
             {/* Dog data devision (name, height, width, ...) */}
             <View style={styles.dataCard}>
               {/* Name */}
-              <Text style={styles.dataDogText}>Name:</Text>
-              <Text style={styles.dataDogTextValues}>
+              <Text style={styles.dataDogText}>Breed name:</Text>
+              <Text style={styles.dataDogTextBreedValue}>
                 {item.breeds[0]?.name || "Unknown Breed"}
               </Text>
               {/* Mesures data */}
@@ -89,10 +93,11 @@ export default function DogsList() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+
     backgroundColor: "#dce6f2",
     width: "100%",
   },
+  flatList: { padding: 20, width: "100%" },
   card: {
     display: "flex",
     flexDirection: "row",
@@ -117,7 +122,7 @@ const styles = StyleSheet.create({
   dogData: {
     marginTop: 10,
     paddingHorizontal: 10,
-    paddingVertical: 5,
+    paddingVertical: 8,
     borderRadius: 10,
     display: "flex",
     backgroundColor: "#e7f0ff",
@@ -145,6 +150,12 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontFamily: "fredoka-regular",
   },
+  dataDogTextBreedValue: {
+    textAlign: "center",
+    marginTop: 10,
+    fontFamily: "fredoka-regular",
+    fontSize: 14,
+  },
   button: {
     backgroundColor: "#cfb0d4",
     borderRadius: 50,
@@ -162,6 +173,16 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#fff",
 
+    fontFamily: "fredoka-regular",
+  },
+  nav: {
+    height: 90,
+    backgroundColor: "#fff",
+  },
+  navText: {
+    textAlign: "center",
+    fontSize: 24,
+    marginTop: 50,
     fontFamily: "fredoka-regular",
   },
 });
