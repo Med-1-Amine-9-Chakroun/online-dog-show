@@ -181,8 +181,8 @@ const styles = StyleSheet.create({
     width: 200,
     justifyContent: "center",
     alignSelf: "center",
-    marginBottom: 10,
-    marginTop: 30,
+    marginBottom: 20,
+    marginTop: 20,
   },
   buttonContent: {
     display: "flex",
