@@ -7,15 +7,12 @@ import { useNavigation } from "@react-navigation/native";
 
 export default function DogsList() {
   const [listDogs, setListDogs] = useState([]);
-  const fontsLoaded = useCustomFonts();
+
   const navigation = useNavigation();
 
-  const handlePress = () => {
-    navigation.navigate("DogDetails");
+  const handlePress = (dogData) => {
+    navigation.navigate("DogDetails", { dogData });
   };
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  }
 
   useEffect(() => {
     const headers = new Headers({

@@ -6,9 +6,15 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import GetStartedScreen from "./components/GetStartedScreen";
 import DogsList from "./components/DogsList";
 import DogDetalis from "./components/DogDetalis";
+import useCustomFonts from "./hooks/useCustomFonts";
+import AppLoading from "expo-app-loading";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
+  const fontsLoaded = useCustomFonts();
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
@@ -28,7 +34,7 @@ export default function App() {
           <Stack.Screen
             name="DogDetails"
             component={DogDetalis}
-            // options={{ headerShown: false }}
+            options={{ headerShown: false }}
           />
         </Stack.Navigator>
       </NavigationContainer>

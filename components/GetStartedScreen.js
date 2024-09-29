@@ -1,17 +1,10 @@
 import React from "react";
 import { Image, View, StyleSheet, Text, TouchableOpacity } from "react-native";
 
-import AppLoading from "expo-app-loading";
-import useCustomFonts from "../hooks/useCustomFonts";
 import { useNavigation } from "@react-navigation/native";
 
 export default function GetStartedScreen() {
-  const fontsLoaded = useCustomFonts();
   const navigation = useNavigation();
-
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  }
 
   const handlePress = () => {
     navigation.navigate("DogsList");
