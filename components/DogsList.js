@@ -36,7 +36,7 @@ export default function DogsList() {
       .then((response) => response.json())
       .then((result) => {
         setListDogs(result);
-        console.log(result[0].breeds[0]);
+        console.log(result[0].breeds[0].weight.metric);
       })
       .catch((error) => console.log("error", error));
   }, []);
@@ -64,21 +64,27 @@ export default function DogsList() {
               <View style={styles.dogData}>
                 <View>
                   <Text style={styles.dataDogTextTitles}>Height</Text>
-                  <Text style={styles.dataDogTextValues}>100</Text>
+                  <Text style={styles.dataDogTextValues}>
+                    {(item.height / 1000).toFixed(2)} m
+                  </Text>
                 </View>
                 <View>
                   <Text style={styles.dataDogTextTitles}>Width</Text>
-                  <Text style={styles.dataDogTextValues}>60</Text>
+                  <Text style={styles.dataDogTextValues}>
+                    {(item.width / 1000).toFixed(2)} m
+                  </Text>
                 </View>
                 <View>
                   <Text style={styles.dataDogTextTitles}>weight</Text>
-                  <Text style={styles.dataDogTextValues}>100</Text>
+                  <Text style={styles.dataDogTextValues}>
+                    {item.breeds[0].weight.metric} kg
+                  </Text>
                 </View>
               </View>
 
               <TouchableOpacity
                 style={styles.button}
-                onPress={() => handlePress()}
+                onPress={() => handlePress(item)}
               >
                 <Text style={styles.buttonText}>More details</Text>
               </TouchableOpacity>
@@ -143,11 +149,13 @@ const styles = StyleSheet.create({
     color: "#2d2e30",
     textAlign: "center",
     fontFamily: "fredoka-bold",
+    fontSize: 13,
     letterSpacing: 1,
   },
   dataDogTextValues: {
     textAlign: "center",
     marginTop: 10,
+    fontSize: 13,
     fontFamily: "fredoka-regular",
   },
   dataDogTextBreedValue: {
