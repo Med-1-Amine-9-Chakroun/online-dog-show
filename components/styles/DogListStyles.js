@@ -3,11 +3,13 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
     backgroundColor: "#dce6f2",
     width: "100%",
   },
-  flatList: { padding: 20, width: "100%" },
+  flatList: {
+    padding: 20,
+    width: "100%",
+  },
   card: {
     display: "flex",
     flexDirection: "row",
@@ -22,12 +24,26 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 10,
   },
-  image: {
+  imageWrapper: {
     width: "50%",
+    justifyContent: "center",
+    height: "100%",
+    alignItems: "center",
+    height: 210,
+    backgroundColor: "#f0f0f0",
   },
-  text: {
-    padding: 10,
-    fontSize: 16,
+  image: {
+    width: "100%",
+    height: "100%",
+    borderRadius: 10,
+    borderTopRightRadius: 0,
+    borderBottomRightRadius: 0,
+  },
+  loader: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: [{ translateX: -15 }, { translateY: -15 }],
   },
   dogData: {
     marginTop: 10,
@@ -71,7 +87,6 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: "#cfb0d4",
     borderRadius: 50,
-
     alignItems: "center",
     fontSize: 20,
     padding: 7,
@@ -84,7 +99,6 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 16,
     color: "#fff",
-
     fontFamily: "fredoka-regular",
   },
   nav: {
@@ -97,9 +111,6 @@ const styles = StyleSheet.create({
     marginTop: 50,
     fontFamily: "fredoka-regular",
   },
-  // loader: {
-  //   verticalAlign: "center",
-  // },
 });
 
 export default styles;

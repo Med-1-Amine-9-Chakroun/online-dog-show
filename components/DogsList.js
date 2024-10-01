@@ -9,6 +9,7 @@ export default function DogsList() {
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState({});
 
   const navigation = useNavigation();
 
@@ -22,7 +23,7 @@ export default function DogsList() {
       "x-api-key": "DEMO-API-KEY",
     });
 
-    var requestOptions = {
+    const requestOptions = {
       method: "GET",
       headers: headers,
       redirect: "follow",
@@ -35,7 +36,6 @@ export default function DogsList() {
     )
       .then((response) => response.json())
       .then((result) => {
-        console.log("Fetched result: ", result);
         setListDogs((prevDogs) => [...prevDogs, ...result]); // Append new data
         setLoading(false);
         setLoadingMore(false);
@@ -58,6 +58,10 @@ export default function DogsList() {
     }
   };
 
+  const handleImageLoad = (dogId) => {
+    setImageLoaded((prevState) => ({ ...prevState, [dogId]: true }));
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.nav}>
@@ -70,10 +74,25 @@ export default function DogsList() {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <View style={styles.card}>
-            {/* Log to check what item is being rendered */}
-            {console.log("Rendering dog item: ", item)}
+            <View style={styles.imageWrapper}>
+              {!imageLoaded[item.id] && (
+                <ActivityIndicator
+                  size="large"
+                  color="#0000ff"
+                  style={styles.imageLoader}
+                />
+              )}
 
-            <Image source={{ uri: item.url }} style={styles.image} />
+              <Image
+                source={{ uri: item.url }}
+                style={[
+                  styles.image,
+                  !imageLoaded[item.id] && { display: "none" },
+                ]} // Hide image until loaded
+                onLoad={() => handleImageLoad(item.id)}
+              />
+            </View>
+
             <View style={styles.dataCard}>
               <Text style={styles.dataDogText}>Breed name:</Text>
               <Text style={styles.dataDogTextBreedValue}>
@@ -122,10 +141,6 @@ export default function DogsList() {
           ) : null
         }
       />
-
-      {/* {loading && (
-        <ActivityIndicator size="large" color="#0000ff" style={styles.loader} />
-      )} */}
     </View>
   );
 }
