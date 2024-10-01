@@ -97,6 +97,9 @@ const styles = StyleSheet.create({
     marginTop: 50,
     fontFamily: "fredoka-regular",
   },
+  // loader: {
+  //   verticalAlign: "center",
+  // },
 });
 
 export default styles;

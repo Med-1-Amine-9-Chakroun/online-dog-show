@@ -30,7 +30,7 @@ export default function DogsList() {
 
     setLoadingMore(true);
     fetch(
-      `https://api.thedogapi.com/v1/images/search?size=med&mime_types=jpg&format=json&has_breeds=true&order=RANDOM&page=${currentPage}&limit=20`,
+      `https://api.thedogapi.com/v1/images/search?size=med&mime_types=jpg&format=json&has_breeds=true&order=RANDOM&page=${currentPage}&limit=10`,
       requestOptions
     )
       .then((response) => response.json())
@@ -123,7 +123,9 @@ export default function DogsList() {
         }
       />
 
-      {loading && <ActivityIndicator size="large" color="#0000ff" />}
+      {/* {loading && (
+        <ActivityIndicator size="large" color="#0000ff" style={styles.loader} />
+      )} */}
     </View>
   );
 }
